@@ -9,8 +9,8 @@ inspect x = wi x _ refl
 match : {A : Type} -> {x : A} -> (y : A) -> (x = y) -> Inspect x
 match y prf = wi _ y prf
 
-example : (l : List Bool) -> if (length l == Z) then (S (length l) = 1) else ((S (length l) > 1) = True)
+total example : (l : List Bool) -> if (length l == Z) then (S (length l) = 1) else ((S (length l) > 1) = True)
 example l with (inspect (length l))
-  | (match y prf) with (y)
-    | Z = ?cz
-    | (S n) = ?cs
+  | (match Z prf) = ?cz
+  | (match (S n) prf) = ?cs
+
